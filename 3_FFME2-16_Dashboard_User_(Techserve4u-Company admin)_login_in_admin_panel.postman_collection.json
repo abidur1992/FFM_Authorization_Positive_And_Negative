@@ -1,0 +1,566 @@
+{
+	"info": {
+		"_postman_id": "2cb80020-8e74-4748-99be-c329b92519ef",
+		"name": "3_FFME2-16_Dashboard_User_(Techserve4u/Company admin)_login_in_admin_panel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PositiveTest",
+			"item": [
+				{
+					"name": "FFME2-16 Dashboard User (Techserve4u/Company admin) login in admin panel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b1931fbe-69b6-4b2f-a415-8f329c466518",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//generating Schema",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDA4MzE3MDQsImlhdCI6MTYwMDgyODEwNCwic3ViIjozNjAsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJBYmlkdXIgUmFobWFuIiwiZW1haWwiOiJhYmlkdXJyYWhtYW4wMzU4QGdtYWlsLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjoxOTQsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.puDpUOt4IRMmyOloJGlbDGWNBPX5DHhF1AeWfvXM3qw\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDA4MzE3MDQsImlhdCI6MTYwMDgyODEwNCwic3ViIjozNjAsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJBYmlkdXIgUmFobWFuIiwiZW1haWwiOiJhYmlkdXJyYWhtYW4wMzU4QGdtYWlsLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjoxOTQsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.puDpUOt4IRMmyOloJGlbDGWNBPX5DHhF1AeWfvXM3qw\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"//Scema Validation Test",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n\"email\": \"abidurrahman0358@gmail.com\", \n\"password\": \"Michigan\"\n\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/dashboard-user-login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"dashboard-user-login"
+							]
+						},
+						"description": "Objective: Dashboard User (Techserve4u/Company admin) login in admin panel so that they can perform different task. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps: Test steps includes the following payload as a json format in body\n\nMethod: POST\n{\n    \n\"email\": \"abidurrahman0358@gmail.com\", \n\"password\": \"Michigan\"\n\n}\n\nExpected Result:\n\n{\n    \"auth_token\": \"jwt token will be generated\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\n\nActual Result:\n\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDA2MjI5MjAsImlhdCI6MTYwMDYxOTMyMCwic3ViIjozNjAsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJBYmlkdXIgUmFobWFuIiwiZW1haWwiOiJhYmlkdXJyYWhtYW4wMzU4QGdtYWlsLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjoxOTQsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.NBjmn_BnBQ0AvROd0O-WtozYa-O3Lo_e3M5HXRVH6io\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\n\n\nStatus Code: 200 OK\nTest Result: Pass\n\n\n\n\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "NegativeTest",
+			"item": [
+				{
+					"name": "FFME2-16-1 Dashboard user login without email and without password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d2f67f2d-332b-4667-bf70-59c9befa9045",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Generating Schema ",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"message\": [",
+									"                \"email must be non-empty\",",
+									"                \"password must be non-empty\"",
+									"            ],",
+									"            \"status\": \"failed\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"array\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": [],",
+									"            \"examples\": [",
+									"                [",
+									"                    \"email must be non-empty\",",
+									"                    \"password must be non-empty\"",
+									"                ]",
+									"            ],",
+									"            \"additionalItems\": true,",
+									"            \"items\": {",
+									"                \"$id\": \"#/properties/message/items\",",
+									"                \"anyOf\": [",
+									"                    {",
+									"                        \"$id\": \"#/properties/message/items/anyOf/0\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The first anyOf schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"email must be non-empty\",",
+									"                            \"password must be non-empty\"",
+									"                        ]",
+									"                    }",
+									"                ]",
+									"            }",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"failed\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"//Schema Validtation Test",
+									"",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n\"email\": \"\", \n\"password\": \"\"\n\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/dashboard-user-login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"dashboard-user-login"
+							]
+						},
+						"description": "Objective: Test is to identify invalid result to leave \"empty\" email, and password information. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps: Test steps includes the following payload as a json format in body\n\nMethod: POST\n{\n    \"email\": \"\", \n    \"password\": \"\"\n\n}\n\nExpected Result:\n{\n    \"message\": [\n        \"email must be non-empty\",\n        \"password must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\nActual Result:\n{\n    \"message\": [\n        \"email must be non-empty\",\n        \"password must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\nStatus Code: 403 FORBIDDEN\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "FFME2-16-2 Dashboard user login with email and without password ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6fe9cf1a-9013-4a8c-a792-481f765e569c",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Generating Schema ",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"message\": [",
+									"                \"password must be non-empty\"",
+									"            ],",
+									"            \"status\": \"failed\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"array\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": [],",
+									"            \"examples\": [",
+									"                [",
+									"                    \"password must be non-empty\"",
+									"                ]",
+									"            ],",
+									"            \"additionalItems\": true,",
+									"            \"items\": {",
+									"                \"$id\": \"#/properties/message/items\",",
+									"                \"anyOf\": [",
+									"                    {",
+									"                        \"$id\": \"#/properties/message/items/anyOf/0\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The first anyOf schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"password must be non-empty\"",
+									"                        ]",
+									"                    }",
+									"                ]",
+									"            }",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"failed\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"//Schema Validtation Test",
+									"",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n\"email\": \"abidurrahman0358@gmail.com\", \n\"password\": \"\"\n\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/dashboard-user-login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"dashboard-user-login"
+							]
+						},
+						"description": "Objective: Test is to identify invalid result with email, and without password information. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps: Test steps includes the following payload as a json format in body\n\nMethod: POST\n{\n    \"email\": \"abidurrahman0358@gmail.com\", \n    \"password\": \"\"\n\n}\n\nExpected Result:\n{\n    \"message\": [\n        \"password must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\nActual Result:\n{\n    \"message\": [\n        \"password must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\nStatus Code: 403 FORBIDDEN\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "FFME2-16-3 Dashboard user login without email and with password ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b9cd6cef-fe97-4d2b-ad26-ef750bc74149",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Generating Schema ",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"message\": [",
+									"                \"email must be non-empty\"",
+									"            ],",
+									"            \"status\": \"failed\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"array\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": [],",
+									"            \"examples\": [",
+									"                [",
+									"                    \"email must be non-empty\"",
+									"                ]",
+									"            ],",
+									"            \"additionalItems\": true,",
+									"            \"items\": {",
+									"                \"$id\": \"#/properties/message/items\",",
+									"                \"anyOf\": [",
+									"                    {",
+									"                        \"$id\": \"#/properties/message/items/anyOf/0\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The first anyOf schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"email must be non-empty\"",
+									"                        ]",
+									"                    }",
+									"                ]",
+									"            }",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"failed\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"//Schema Validtation Test",
+									"",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n\"email\": \"\", \n\"password\": \"Michigan\"\n\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/dashboard-user-login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"dashboard-user-login"
+							]
+						},
+						"description": "Objective: Test is to identify invalid result to leave empty email, and with password information. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps: Test steps includes the following payload as a json format in body\n\nMethod: POST\n{\n    \"email\": \"\", \n    \"password\": \"Michigan\"\n\n}\n\nExpected Result:\n{\n    \"message\": [\n        \"email must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\nActual Result:\n{\n    \"message\": [\n        \"email must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\nStatus Code: 403 FORBIDDEN\nTest Result: Pass\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "20884078-a051-4d81-9d8e-1e7d71283edb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d4514760-ee27-416d-8ab4-53b2325ef1e3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

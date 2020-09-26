@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "eb0ba51f-7a0e-4b3b-97a4-d66113b01f81",
+		"name": "7_FFME2-13_App_user_should_be_able_to_authenticate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PositiveTest",
+			"item": [
+				{
+					"name": "FFME2-13 App user should be able to authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f044a2ff-65bb-4965-8d0d-866459be5157",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//generating Schema",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"data\": 174,",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"data\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"integer\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": 0,",
+									"            \"examples\": [",
+									"                174",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"//Scema Validation Test",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user login auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/authenticate-user",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"authenticate-user"
+							]
+						},
+						"description": "Objective: App user should be able to authenticate in backend to login successfully. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps:\n\n1) Select Authorization tab\n2) Select \"Bearer Token\" from drop down\n3) Paste the jwt token generated in \"FFME2-12 App user should be able to login the FFM mobile app\".\n\nExpected Result:\n{\n    \"data\": 174,\n    \"status\": \"success\"\n}\n\nActual Result:\n\n{\n    \"data\": 174,\n    \"status\": \"success\"\n}\n\nStatus Code: 200 OK\nTest Result: Pass"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "fa2fe84d-8e40-4671-9bd0-d0101107720d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "70cc4cef-e925-4dde-ae40-71a9a83993f7",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

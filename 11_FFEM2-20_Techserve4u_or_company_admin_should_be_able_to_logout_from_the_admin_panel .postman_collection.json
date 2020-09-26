@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "a0c7827c-2934-496f-91f4-88159da9313a",
+		"name": "11_FFEM2-20_Techserve4u_or_company_admin_should_be_able_to_logout_from_the_admin_panel ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PositiveTest",
+			"item": [
+				{
+					"name": "FFEM2-20 Techserve4u or company admin should be able to logout from the admin panel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cf79da07-45aa-4c35-8ed8-ecab44a0389b",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//generating Schema",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"message\": \"Successfully logged out.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged out.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"//Scema Validation Test",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{company admin auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/logout-dashboard-user",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"logout-dashboard-user"
+							]
+						},
+						"description": "Objective: Techserve4u or company admin should be able to logout from the admin panel so that they can perform any other activities. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps:\n\n1) Select Authorization tab\n2) Select \"Bearer Token\" from drop down\n3) Paste the jwt token generated in \"FFME2-16 Dashboard User (Techserve4u/Company admin) login in admin panel\".\n\nExpected Result:\n\n{\n    \"message\": \"Successfully logged out.\",\n    \"status\": \"success\"\n}\n\n\nActual Result:\n\n{\n    \"message\": \"Successfully logged out.\",\n    \"status\": \"success\"\n}\n\n\n\nStatus Code: 200 OK\nTest Result: Pass\n\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "da7c8e29-38cb-4aa3-b900-ef76a4884534",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b2b7c001-2dc2-431b-9efc-899c1733c82b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

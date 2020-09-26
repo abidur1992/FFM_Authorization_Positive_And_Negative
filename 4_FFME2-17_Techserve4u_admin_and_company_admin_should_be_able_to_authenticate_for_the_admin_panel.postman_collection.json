@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "fc0a952b-6c04-4661-8a65-df32ad07bdc8",
+		"name": "4_FFME2-17_Techserve4u_admin_and_company_admin_should_be_able_to_authenticate_for_the_admin_panel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PositiveTest",
+			"item": [
+				{
+					"name": "FFME2-17 Techserve4u admin and company admin should be able to authenticate for the admin panel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0b56ae56-86e4-4935-a839-706e8075916f",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//generating Schema",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"data\": 360,",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"data\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"integer\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": 0,",
+									"            \"examples\": [",
+									"                360",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"//Scema Validation Test",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{company admin auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/authenticate-dashboard-user",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"authenticate-dashboard-user"
+							]
+						},
+						"description": "Objective: Techserve4u admin and company admin should be able to authenticate for the admin panel \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps:\n\n1) Select Authorization tab\n2) Select \"Bearer Token\" from drop down\n3) Paste the jwt token generated in \"FFME2-16 Dashboard User (Techserve4u/Company admin) login in admin panel\".\n\nExpected Result:\n{\n    \"data\": 360,\n    \"status\": \"success\"\n}\n\nActual Result:\n\n{\n    \"data\": 360,\n    \"status\": \"success\"\n}\n\nStatus Code: 200 OK\nTest Result: Pass"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "e3dbf426-731b-4f24-acc8-b388accc879b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1260e5c7-391e-464e-a0b4-c59ba0b79e50",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "69dc4f57-191c-4286-ac77-9858f48059b8",
+		"name": "8_FFME2-11_App_user_should_be_able_to_get_all_the_contact_information_of_their_company",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PositiveTest",
+			"item": [
+				{
+					"name": "FFME2-11 App user should be able to get all the contact information of their company",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "17e8c8ba-4b86-4e2e-9071-b29849f5fd0d",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//generating Schema",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"array\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": [],",
+									"    \"examples\": [",
+									"        [",
+									"            {",
+									"                \"department\": null,",
+									"                \"designation\": null,",
+									"                \"email\": \"abidur_92@yahoo.com\",",
+									"                \"name\": \"Abidur Rahman\",",
+									"                \"phone_number\": \"\",",
+									"                \"profile_photo\": \"\"",
+									"            },",
+									"            {",
+									"                \"department\": null,",
+									"                \"designation\": null,",
+									"                \"email\": \"abidur_93@yahoo.com\",",
+									"                \"name\": \"Abidur Rahman\",",
+									"                \"phone_number\": \"\",",
+									"                \"profile_photo\": \"\"",
+									"            }",
+									"        ]",
+									"    ],",
+									"    \"additionalItems\": true,",
+									"    \"items\": {",
+									"        \"$id\": \"#/items\",",
+									"        \"anyOf\": [",
+									"            {",
+									"                \"$id\": \"#/items/anyOf/0\",",
+									"                \"type\": \"object\",",
+									"                \"title\": \"The first anyOf schema\",",
+									"                \"description\": \"An explanation about the purpose of this instance.\",",
+									"                \"default\": {},",
+									"                \"examples\": [",
+									"                    {",
+									"                        \"department\": null,",
+									"                        \"designation\": null,",
+									"                        \"email\": \"abidur_92@yahoo.com\",",
+									"                        \"name\": \"Abidur Rahman\",",
+									"                        \"phone_number\": \"\",",
+									"                        \"profile_photo\": \"\"",
+									"                    }",
+									"                ],",
+									"                \"required\": [",
+									"                    \"department\",",
+									"                    \"designation\",",
+									"                    \"email\",",
+									"                    \"name\",",
+									"                    \"phone_number\",",
+									"                    \"profile_photo\"",
+									"                ],",
+									"                \"properties\": {",
+									"                    \"department\": {",
+									"                        \"$id\": \"#/items/anyOf/0/properties/department\",",
+									"                        \"type\": \"null\",",
+									"                        \"title\": \"The department schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": null,",
+									"                        \"examples\": [",
+									"                            null",
+									"                        ]",
+									"                    },",
+									"                    \"designation\": {",
+									"                        \"$id\": \"#/items/anyOf/0/properties/designation\",",
+									"                        \"type\": \"null\",",
+									"                        \"title\": \"The designation schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": null,",
+									"                        \"examples\": [",
+									"                            null",
+									"                        ]",
+									"                    },",
+									"                    \"email\": {",
+									"                        \"$id\": \"#/items/anyOf/0/properties/email\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The email schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"abidur_92@yahoo.com\"",
+									"                        ]",
+									"                    },",
+									"                    \"name\": {",
+									"                        \"$id\": \"#/items/anyOf/0/properties/name\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The name schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"Abidur Rahman\"",
+									"                        ]",
+									"                    },",
+									"                    \"phone_number\": {",
+									"                        \"$id\": \"#/items/anyOf/0/properties/phone_number\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The phone_number schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"\"",
+									"                        ]",
+									"                    },",
+									"                    \"profile_photo\": {",
+									"                        \"$id\": \"#/items/anyOf/0/properties/profile_photo\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The profile_photo schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"\"",
+									"                        ]",
+									"                    }",
+									"                },",
+									"                \"additionalProperties\": true",
+									"            }",
+									"        ]",
+									"    }",
+									"}",
+									"//Scema Validation Test",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user login auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/get-company-contacts",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"get-company-contacts"
+							]
+						},
+						"description": "Objective: App user should be able to get all the contact information of their company so that they can view all details. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps:\n\n1) Select Authorization tab\n2) Select \"Bearer Token\" from drop down\n3) Paste the jwt token generated in \"FFME2-12 App user should be able to login the FFM mobile app\".\n\nExpected Result:\n     {\n        \"department\": null,\n        \"designation\": null,\n        \"email\": \"abidur_92@yahoo.com\",\n        \"name\": \"Abidur Rahman\",\n        \"phone_number\": \"\",\n        \"profile_photo\": \"\"\n    }\n\nActual Result:\n\n[\n    {\n        \"department\": null,\n        \"designation\": null,\n        \"email\": \"abidur_92@yahoo.com\",\n        \"name\": \"Abidur Rahman\",\n        \"phone_number\": \"\",\n        \"profile_photo\": \"\"\n    },\n    {\n        \"department\": null,\n        \"designation\": null,\n        \"email\": \"abidur_93@yahoo.com\",\n        \"name\": \"Abidur Rahman\",\n        \"phone_number\": \"\",\n        \"profile_photo\": \"\"\n    },\n    {\n        \"department\": null,\n        \"designation\": null,\n        \"email\": \"abidur92@yahoo.com\",\n        \"name\": \"Abidur Rahman\",\n        \"phone_number\": \"\",\n        \"profile_photo\": \"\"\n    },\n    {\n        \"department\": null,\n        \"designation\": null,\n        \"email\": \"abidur_92@gmaill.com\",\n        \"name\": \"Abidur Rahman\",\n        \"phone_number\": \"\",\n        \"profile_photo\": \"\"\n    },\n    {\n        \"department\": null,\n        \"designation\": null,\n        \"email\": \"abidur_92@gmailll.com\",\n        \"name\": \"Abidur Rahman\",\n        \"phone_number\": \"\",\n        \"profile_photo\": \"\"\n    }\n]\n\nStatus Code: 200 OK\nTest Result: Pass"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "59f4fa78-0582-4291-bbc5-ee0944627e8c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1ba1edd9-a1f0-4ddf-b737-14b7627b883c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

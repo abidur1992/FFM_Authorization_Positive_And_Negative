@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "772f1df0-f2df-425f-8ac8-5e8efd695fe2",
+		"name": "10_FFME2-21_Techserve4u_Company_admin_and_FFM_app_user_should_be_able_to_refresh_their_authentication_token",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PositiveTest",
+			"item": [
+				{
+					"name": "FFME2-21 Techserve4u/Company admin and FFM app user should be able to refresh their authentication token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "38b7a3d0-9b19-4601-8504-3986b269e260",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//generating Schema",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDE0OTU3MDcsImlhdCI6MTYwMDg5MDkwNywic3ViIjoxNzQsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6Ik5pYXogU2FyaWYiLCJwaG9uZV9udW1iZXIiOiIyMDE1ODkxNDExIiwibWVtYmVyX3R5cGUiOjN9.USdHvcxwIOL-ENZeORC0MZUoWrW2e4k5SdxeAHcQYHw\",",
+									"            \"message\": \"Successfully refreshed token.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDE0OTU3MDcsImlhdCI6MTYwMDg5MDkwNywic3ViIjoxNzQsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6Ik5pYXogU2FyaWYiLCJwaG9uZV9udW1iZXIiOiIyMDE1ODkxNDExIiwibWVtYmVyX3R5cGUiOjN9.USdHvcxwIOL-ENZeORC0MZUoWrW2e4k5SdxeAHcQYHw\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully refreshed token.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"//Scema Validation Test",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user login auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/refresh-token",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"refresh-token"
+							]
+						},
+						"description": "Objective: Techserve4u/Company admin and FFM app user should be able to refresh their authentication token.\n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps:\n\n1) Select Authorization tab\n2) Select \"Bearer Token\" from drop down\n3) Paste the jwt token generated in \"FFME2-12 App user should be able to login the FFM mobile app\".\n\nExpected Result:\n{\n\"auth_token\": \"Refresh jwt token will generate\",\n    \"message\": \"Successfully refreshed token.\",\n    \"status\": \"success\"\n}\n\nActual Result:\n\n{\n   \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDEyMzM2MjUsImlhdCI6MTYwMDYyODgyNSwic3ViIjoxNzQsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6Ik5pYXogU2FyaWYiLCJwaG9uZV9udW1iZXIiOiIyMDE1ODkxNDExIiwibWVtYmVyX3R5cGUiOjN9.q8HmuOD5cPf3It1l_Fwvke6in1ew0icMqfJZpj-rDT4\",\n    \"message\": \"Successfully refreshed token.\",\n    \"status\": \"success\"\n}\n\nStatus Code: 200 OK\nTest Result: Pass\n\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c14d0cee-edbf-4df4-975f-5e299b128170",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3cd517f7-257c-4360-a747-6cbdf9f90c0a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

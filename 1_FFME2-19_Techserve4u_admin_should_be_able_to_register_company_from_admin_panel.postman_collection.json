@@ -1,0 +1,1112 @@
+{
+	"info": {
+		"_postman_id": "37cd7a3a-e2ef-4bfc-922d-fd201366e41e",
+		"name": "1_FFME2-19_Techserve4u_admin_should_be_able_to_register_company_from_admin_panel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PositiveTest",
+			"item": [
+				{
+					"name": "FFME2-19 Techserve4u admin should be able to register company from admi panel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2dd13cf4-183a-4405-92a1-00a8502ca917",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//generating Schema",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"message\": \"Successfully registered company 'Abidur Rahman Fahad' .\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully registered company 'Abidur Rahman Fahad' .\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"//Scema Validation Test",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\"name\": \"Abidur Rahman Fahadfdnkjfbjk\",\n\"address\": \"Parkchester, NY\",\n\"tin\": \"0102030405jhsbhjscjk\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/register-company",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"register-company"
+							]
+						},
+						"description": "Objective: Techserve4u admin should be able to register company from admin panel so that they can access the service.\n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps: Test steps includes the following payload as a json format in body\n\nMethod: POST\n{\n\n\"name\": \"Abidur Rahman Fahad\",\n\"address\": \"Parkchester, NY\",\n\"tin\": \"12340987\"\n\n}\n\nExpected Result:\n\n{\n    \"message\": \"Successfully registered company 'Abidur Rahman Fahad' .\",\n    \"status\": \"success\"\n}\n\nActual Result:\n\n{\n    \"message\": \"Successfully registered company 'Abidur Rahman Fahad' .\",\n    \"status\": \"success\"\n}\n\n\nStatus Code: 201 CREATED\nTest Result: Pass\n\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "NegativeTest",
+			"item": [
+				{
+					"name": "FFME2-19-1 Registering company without name, address and tin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8f4e93ad-4edf-47c1-93bc-479d2518cdd4",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//generating Schema",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"message\": [",
+									"                \"name must be non-empty\",",
+									"                \"address must be non-empty\",",
+									"                \"tin must be non-empty\"",
+									"            ],",
+									"            \"status\": \"failed\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"array\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": [],",
+									"            \"examples\": [",
+									"                [",
+									"                    \"name must be non-empty\",",
+									"                    \"address must be non-empty\"",
+									"                ]",
+									"            ],",
+									"            \"additionalItems\": true,",
+									"            \"items\": {",
+									"                \"$id\": \"#/properties/message/items\",",
+									"                \"anyOf\": [",
+									"                    {",
+									"                        \"$id\": \"#/properties/message/items/anyOf/0\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The first anyOf schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"name must be non-empty\",",
+									"                            \"address must be non-empty\"",
+									"                        ]",
+									"                    }",
+									"                ]",
+									"            }",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"failed\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"        ",
+									"    ",
+									"",
+									"//Scema Validation Test",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\"name\": \"\",\n\"address\": \"\",\n\"tin\": \"\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/register-company",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"register-company"
+							]
+						},
+						"description": "Objective: Test is to identify invalid result to leave \"empty\" name, address, and tin information. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps: Test steps includes the following payload as a json format in body\n\nMethod: POST\n{\n\n\"name\": \"\",\n\"address\": \"\",\n\"tin\": \"\"\n\n}\n\nExpected Result:\n{\n    \"message\": [\n        \"name must be non-empty\",\n        \"address must be non-empty\",\n        \"tin must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\nActual Result:\n{\n    \"message\": [\n        \"name must be non-empty\",\n        \"address must be non-empty\",\n        \"tin must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\n\nStatus Code: 403 FORBIDDEN\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "FFME2-19-2 Registering company without name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7f1aaa3c-8db5-44e5-ae24-476c23cd4260",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Generating Schema ",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"message\": [",
+									"                \"name must be non-empty\"",
+									"            ],",
+									"            \"status\": \"failed\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"array\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": [],",
+									"            \"examples\": [",
+									"                [",
+									"                    \"name must be non-empty\"",
+									"                ]",
+									"            ],",
+									"            \"additionalItems\": true,",
+									"            \"items\": {",
+									"                \"$id\": \"#/properties/message/items\",",
+									"                \"anyOf\": [",
+									"                    {",
+									"                        \"$id\": \"#/properties/message/items/anyOf/0\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The first anyOf schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"name must be non-empty\"",
+									"                        ]",
+									"                    }",
+									"                ]",
+									"            }",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"failed\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"//Schema Validtation Test",
+									"",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									" ",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\"name\": \"\",\n\"address\": \"Parkchester, NY\",\n\"tin\": \"0102030405\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/register-company",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"register-company"
+							]
+						},
+						"description": "Objective: Test is to identify invalid result to leave \"empty\" company information. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps: Test steps includes the following payload as a json format in body\n\nMethod: POST\n{\n\"name\": \"\",\n\"address\": \"Parkchester, NY\",\n\"tin\": \"0102030405\"\n}\nExpected Result:\n{\n    \"message\": [\n        \"name must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\n\nActual Result:\n{\n    \"message\": [\n        \"name must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\n\nStatus Code: 403 FORBIDDEN\nTest Result: Pass\n\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "FFME2-19-3 Registering company without name and address",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ac2680f2-8ee8-4157-879b-753333e94703",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Generating Schema ",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"message\": [",
+									"                \"name must be non-empty\",",
+									"                \"address must be non-empty\"",
+									"            ],",
+									"            \"status\": \"failed\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"array\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": [],",
+									"            \"examples\": [",
+									"                [",
+									"                    \"name must be non-empty\",",
+									"                    \"address must be non-empty\"",
+									"                ]",
+									"            ],",
+									"            \"additionalItems\": true,",
+									"            \"items\": {",
+									"                \"$id\": \"#/properties/message/items\",",
+									"                \"anyOf\": [",
+									"                    {",
+									"                        \"$id\": \"#/properties/message/items/anyOf/0\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The first anyOf schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"name must be non-empty\",",
+									"                            \"address must be non-empty\"",
+									"                        ]",
+									"                    }",
+									"                ]",
+									"            }",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"failed\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"//Schema Validtation Test",
+									"",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									" ",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\"name\": \"\",\n\"address\": \"\",\n\"tin\": \"0102030405\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/register-company",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"register-company"
+							]
+						},
+						"description": "Objective: Test is to identify invalid result to leave \"empty\" name, and address information. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps: Test steps includes the following payload as a json format in body\n\nMethod: POST\n{\n\n\"name\": \"\",\n\"address\": \"\",\n\"tin\": \"0102030405\"\n\n}\n\nExpected Result:\n{\n    \"message\": [\n        \"name must be non-empty\",\n        \"address must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\nActual Result:\n{\n    \"message\": [\n        \"name must be non-empty\",\n        \"address must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\n\nStatus Code: 403 FORBIDDEN\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "FFME2-19-4 Registering company without name and tin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c950f6ed-b3c6-422c-aab5-4ddd1f6297ba",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Generating Schema ",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"message\": [",
+									"                \"name must be non-empty\",",
+									"                \"tin must be non-empty\"",
+									"            ],",
+									"            \"status\": \"failed\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"array\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": [],",
+									"            \"examples\": [",
+									"                [",
+									"                    \"name must be non-empty\",",
+									"                    \"tin must be non-empty\"",
+									"                ]",
+									"            ],",
+									"            \"additionalItems\": true,",
+									"            \"items\": {",
+									"                \"$id\": \"#/properties/message/items\",",
+									"                \"anyOf\": [",
+									"                    {",
+									"                        \"$id\": \"#/properties/message/items/anyOf/0\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The first anyOf schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"name must be non-empty\",",
+									"                            \"tin must be non-empty\"",
+									"                        ]",
+									"                    }",
+									"                ]",
+									"            }",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"failed\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"//Schema Validtation Test",
+									"",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									" ",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\"name\": \"\",\n\"address\": \"Parkchester, NY\",\n\"tin\": \"\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/register-company",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"register-company"
+							]
+						},
+						"description": "Objective: Test is to identify invalid result to leave \"empty\" name, and tin information. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps: Test steps includes the following payload as a json format in body\n\nMethod: POST\n{\n\n\"name\": \"\",\n\"address\": \"Parkchester, NY\",\n\"tin\": \"\"\n\n}\n\nExpected Result:\n{\n    \"message\": [\n        \"name must be non-empty\",\n        \"tin must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\nActual Result:\n{\n    \"message\": [\n        \"name must be non-empty\",\n        \"tin must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\n\nStatus Code: 403 FORBIDDEN\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "FFME2-19-5 Registering company without address",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "559e3be6-73a2-4fe9-ada0-582f06c4d629",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Generating Schema ",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"message\": [",
+									"                \"address must be non-empty\"",
+									"            ],",
+									"            \"status\": \"failed\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"array\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": [],",
+									"            \"examples\": [",
+									"                [",
+									"                    \"address must be non-empty\"",
+									"                ]",
+									"            ],",
+									"            \"additionalItems\": true,",
+									"            \"items\": {",
+									"                \"$id\": \"#/properties/message/items\",",
+									"                \"anyOf\": [",
+									"                    {",
+									"                        \"$id\": \"#/properties/message/items/anyOf/0\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The first anyOf schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"address must be non-empty\"",
+									"                        ]",
+									"                    }",
+									"                ]",
+									"            }",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"failed\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"   ",
+									"            ",
+									"",
+									"//Schema Validtation Test",
+									"",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									" "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\"name\": \"Abidur Rahman Fahad\",\n\"address\": \"\",\n\"tin\": \"0102030405\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/register-company",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"register-company"
+							]
+						},
+						"description": "Objective: Test is to identify invalid result to leave \"empty\" address field information. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps: Test steps includes the following payload as a json format in body\n\nMethod: POST\n{\n\n\"name\": \"Abidur Rahman Fahad\",\n\"address\": \"\",\n\"tin\": \"0102030405\"\n\n}\n\nExpected Result:\n{\n    \"message\": [\n        \"address must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\n\nActual Result:\n{\n    \"message\": [\n        \"address must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\nStatus Code: 403 FORBIDDEN\nTest Result: Pass\n\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "FFME2-19-6 Registering company without address and tin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2f9b819c-3559-44f7-99d9-9874207d5a41",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Generating Schema ",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"message\": [",
+									"                \"address must be non-empty\",",
+									"                \"tin must be non-empty\"",
+									"            ],",
+									"            \"status\": \"failed\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"array\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": [],",
+									"            \"examples\": [",
+									"                [",
+									"                    \"address must be non-empty\",",
+									"                    \"tin must be non-empty\"",
+									"                ]",
+									"            ],",
+									"            \"additionalItems\": true,",
+									"            \"items\": {",
+									"                \"$id\": \"#/properties/message/items\",",
+									"                \"anyOf\": [",
+									"                    {",
+									"                        \"$id\": \"#/properties/message/items/anyOf/0\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The first anyOf schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"address must be non-empty\",",
+									"                            \"tin must be non-empty\"",
+									"                        ]",
+									"                    }",
+									"                ]",
+									"            }",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"failed\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"//Schema Validtation Test",
+									"",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									" ",
+									"   ",
+									"          "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\"name\": \"Abidur Rahman Fahad\",\n\"address\": \"\",\n\"tin\": \"\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/register-company",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"register-company"
+							]
+						},
+						"description": "Objective: Test is to identify invalid result to leave \"empty\" address and tin field information. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps: Test steps includes the following payload as a json format in body\n\nMethod: POST\n\nExpected Result:\n{\n    \"message\": [\n        \"address must be non-empty\",\n        \"tin must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\n\nActual Result:\n{\n    \"message\": [\n        \"address must be non-empty\",\n        \"tin must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\nStatus Code: 403 FORBIDDEN\nTest Result: Pass\n\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "FFME2-19-7 Registering company without tin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b255edd6-1ec3-4bba-a28b-fc1c7cc47219",
+								"exec": [
+									"//Response time validation ",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//Status code validation ",
+									"",
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"//create variable for json data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Generating Schema ",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"message\": [",
+									"                \"tin must be non-empty\"",
+									"            ],",
+									"            \"status\": \"failed\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"array\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": [],",
+									"            \"examples\": [",
+									"                [",
+									"                    \"tin must be non-empty\"",
+									"                ]",
+									"            ],",
+									"            \"additionalItems\": true,",
+									"            \"items\": {",
+									"                \"$id\": \"#/properties/message/items\",",
+									"                \"anyOf\": [",
+									"                    {",
+									"                        \"$id\": \"#/properties/message/items/anyOf/0\",",
+									"                        \"type\": \"string\",",
+									"                        \"title\": \"The first anyOf schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": \"\",",
+									"                        \"examples\": [",
+									"                            \"tin must be non-empty\"",
+									"                        ]",
+									"                    }",
+									"                ]",
+									"            }",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"failed\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"//Schema Validtation Test",
+									"",
+									"pm.test('Schema Validation', function() {",
+									"   ",
+									"    var result=tv4.validateResult(pm.response.json(), schema);",
+									" ",
+									"    if(!result.valid){",
+									"        console.log(result);",
+									"    }",
+									" ",
+									"    pm.expect(result.valid).to.be.true;",
+									"});",
+									" ",
+									"   ",
+									"          "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\"name\": \"Abidur Rahman Fahad\",\n\"address\": \"Parkchester, NY\",\n\"tin\": \"\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/field-force/auth/register-company",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"register-company"
+							]
+						},
+						"description": "Objective: Test is to identify invalid result to leave \"empty\" tin field information. \n\nSE: Shiblu Ahmed\nPO: Pranto Majumder\nQA: Abidur Rahman\nReviewer:Pranto Majumder\n\nTest Steps: Test steps includes the following payload as a json format in body\n\nMethod: POST\n{\n\n\"name\": \"Abidur Rahman Fahad\",\n\"address\": \"Parkchester, NY\",\n\"tin\": \"\"\n\n}\n\nExpected Result:\n{\n    \"message\": [\n        \"tin must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\nActual Result:\n{\n    \"message\": [\n        \"tin must be non-empty\"\n    ],\n    \"status\": \"failed\"\n}\nStatus Code: 403 FORBIDDEN\nTest Result: Pass\n\n\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "eb734223-899b-4a2e-88c4-8480f3418a6d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "14d65527-cfd4-480d-bb66-05c9e84b7312",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
