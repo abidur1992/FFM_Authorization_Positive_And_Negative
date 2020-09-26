@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "2cb80020-8e74-4748-99be-c329b92519ef",
-		"name": "3_FFME2-16_Dashboard_User_(Techserve4u/Company admin)_login_in_admin_panel",
+		"name": "3_FFME2-16_Dashboard_User_Techserve4u_or_Company_admin_login_in_admin_panel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -16,6 +16,9 @@
 							"script": {
 								"id": "b1931fbe-69b6-4b2f-a415-8f329c466518",
 								"exec": [
+									"var jsonData= JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"company admin auth_token\", jsonData.auth_token);",
+									"",
 									"//Response time validation ",
 									"",
 									"pm.test(\"Response time is less than 600ms\", function () {",
